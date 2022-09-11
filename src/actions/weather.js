@@ -16,7 +16,7 @@ export const fetchWeather = createAsyncThunk(
           }&lon=${res.data.coord.lon}&units=${
             getState().units
           }&exclude=minutely,hourly,alerts&appid=${
-            process.env.REACT_APP_OPEN_WEATHER_API_KEY_2
+            process.env.REACT_APP_OPEN_WEATHER_API_KEY
           }`
         );
         return { data, res };
