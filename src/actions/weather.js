@@ -5,6 +5,7 @@ import { CHANGE_UNITS, FETCH_WEATHER } from "./type";
 export const fetchWeather = createAsyncThunk(
   FETCH_WEATHER,
   async (city, { rejectWithValue, getState, dispatch }) => {
+    console.log(process.env.REACT_APP_OPEN_WEATHER_API_KEY);
     if (city !== null) {
       try {
         const res = await axios.get(
@@ -16,7 +17,7 @@ export const fetchWeather = createAsyncThunk(
           }&lon=${res.data.coord.lon}&units=${
             getState().units
           }&exclude=minutely,hourly,alerts&appid=${
-            process.env.REACT_APP_OPEN_WEATHER_API_KEY
+            process.env.NPM_OPEN_WEATHER_API_KEY
           }`
         );
         return { data, res };
