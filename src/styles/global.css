@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-weight: 200;
+}
+svg {
+    fill: #fff
+}
+.wrapper {
+    margin: 19px;
+    max-width: 100%;
+    min-height: 90vh;
+}
+.circle1 {
+    height: 500px;
+    width: 500px;
+    position: fixed;
+    z-index: -2;
+    filter: blur(200px);
+    left: -250px;
+    bottom: -113px;
+}
+.circle2 {
+    height: 500px;
+    width: 500px;
+    position: fixed;
+    z-index: -2;
+    filter: blur(250px);
+    right: -250px;
+    top: -113px;
+}
+.loader, .error-msg {
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+.error-msg {
+    text-transform: capitalize;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background: #00b400;
+    }
+    .circle1 {
+        background: #00ff00;
+    }
+    .circle2 {
+        background: #ffff00;
+    }
+    ::-webkit-scrollbar-track {
+        background: none;
+        border: 1px solid rgba(66, 233, 2, 0.5);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(66, 233, 2, 0.5)
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(66, 233, 2, 1);
+    }   
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #000;
+    }
+    .circle1 {
+        background: #363636;
+
+        width: 700px;
+    }
+    .circle2 {
+        background: rgba(255, 255, 255, .3);
+    }
+    ::-webkit-scrollbar-track {
+        background: none;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1)
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, .3);
+    }   
+}
+
+@media (min-width: 768px) {
+    .wrapper {
+        margin: 25px 60px;
+    }
+}
+@media (min-width: 1024px) {
+    .wrapper {
+        margin: 25px 40px;
+    }
+}
