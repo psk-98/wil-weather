@@ -20,7 +20,6 @@ ReactDOM.render(
       <Home />
     </div>
     <Footer />
-    {process.env.REACT_APP_OPEN_WEATHER_API_KEY}
     <div className="circle1"></div>
     <div className="circle2"></div>
   </Provider>,
