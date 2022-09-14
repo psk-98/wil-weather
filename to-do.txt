@@ -1,3 +1,0 @@
-change navbar for bigger screen
-contact me btn hover animation
-section selection fix for scrolling

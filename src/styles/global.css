@@ -10,6 +10,9 @@
 svg {
     fill: #fff
 }
+body {
+    min-height: 100vh;
+}
 .wrapper {
     margin: 19px;
     max-width: 100%;
