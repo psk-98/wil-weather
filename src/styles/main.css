@@ -16,6 +16,7 @@
     -webkit-backdrop-filter: blur(30px);
     border: none;
     padding: 5px;
+    max-width: 80%;
     font-size: 15px;
     text-transform: capitalize;
 }
