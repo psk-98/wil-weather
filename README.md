@@ -1,4 +1,4 @@
-#[Welcome to My Weather App](https://howztheweather.netlify.app/)
+# [Welcome to My Weather App](https://howztheweather.netlify.app/)
 
 This application is built using React, a JavaScript library for building user interfaces. It also utilizes Redux Toolkit for state management, Framer Motion for animations, and the OpenWeather API for retrieving current weather data.
 
