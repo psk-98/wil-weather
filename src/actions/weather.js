@@ -8,7 +8,7 @@ export const fetchWeather = createAsyncThunk(
     if (city !== null) {
       try {
         const res = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.OPEN_WEATHER_API_KEY}`,
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`,
         )
         const { data } = await axios.get(
           `https://api.openweathermap.org/data/2.5/onecall?lat=${
@@ -16,7 +16,7 @@ export const fetchWeather = createAsyncThunk(
           }&lon=${res.data.coord.lon}&units=${
             getState().units
           }&exclude=minutely,hourly,alerts&appid=${
-            process.env.OPEN_WEATHER_API_KEY
+            process.env.REACT_APP_OPENWEATHER_API_KEY
           }`,
         )
         return { data, res }

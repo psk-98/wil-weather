@@ -10,7 +10,7 @@ const svgVariants = {
     transition: {
       duration: 1,
       type: "spring",
-      yoyo: Infinity,
+      repeat: Infinity,
     },
   },
 }
