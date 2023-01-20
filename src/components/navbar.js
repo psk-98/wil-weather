@@ -1,39 +1,39 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { motion } from "framer-motion/dist/framer-motion";
-import { changeUnits, fetchWeather } from "../actions/weather";
+import React, { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { changeUnits, fetchWeather } from "../actions/weather"
+import { motion } from "framer-motion"
 
 const spring = {
   type: "spring",
   stiffness: 700,
   damping: 30,
-};
+}
 
 const Navbar = () => {
-  const [isF, setIsF] = useState(false);
-  const [city, setCity] = useState(null);
-  const dispatch = useDispatch();
+  const [isF, setIsF] = useState(false)
+  const [city, setCity] = useState(null)
+  const dispatch = useDispatch()
 
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state)
 
-  const { units } = state;
+  const { units } = state
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (city !== null && city !== "") dispatch(fetchWeather(city));
-  };
+    e.preventDefault()
+    if (city !== null && city !== "") dispatch(fetchWeather(city))
+  }
 
   const handleUnits = () => {
-    setIsF(!isF);
-    if (units === "metric") dispatch(changeUnits("imperial"));
-    if (units === "imperial") dispatch(changeUnits("metric"));
-    if (city !== null && city !== "") dispatch(fetchWeather(city));
-  };
+    setIsF(!isF)
+    if (units === "metric") dispatch(changeUnits("imperial"))
+    if (units === "imperial") dispatch(changeUnits("metric"))
+    if (city !== null && city !== "") dispatch(fetchWeather(city))
+  }
 
   const handleUnitsDisplay = () => {
-    if (units === "metric") return <>C</>;
-    if (units === "imperial") return <>F</>;
-  };
+    if (units === "metric") return <>C</>
+    if (units === "imperial") return <>F</>
+  }
 
   return (
     <div className="navbar">
@@ -64,7 +64,7 @@ const Navbar = () => {
         </motion.div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
