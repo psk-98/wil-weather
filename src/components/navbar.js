@@ -44,7 +44,6 @@ const Navbar = () => {
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        {console.log(process.env.REACT_APP_OPENWEATHER_API_KEY)}
         <motion.button
           type="submit"
           whileTap={{ scale: 0.9 }}
