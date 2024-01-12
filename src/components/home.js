@@ -1,105 +1,61 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import {
-  degrees,
-  forecastHelper,
-  handleSun,
-  handleTime,
-  handleUV,
-  handleVisibility,
-  handleWindSpeed,
-} from "./helpers";
-import Loader from "./loader";
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { forecastHelper } from './helpers'
+import Loader from './loader'
+import axios from 'axios'
 
 const Home = () => {
-  const state = useSelector((state) => state);
+    const state = useSelector((state) => state)
+    const [weather, setWeather] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
 
-  const { weather, loading, error, units } = state;
+    useEffect(async () => {
+        try {
+            const res = await axios.get(
+                `https://api.weather.gov/gridpoints/MTR/84,105/forecast?units=${state.units}`
+            )
+            const { data } = res
+            setWeather(data)
+            setLoading(false)
+        } catch (err) {
+            console.log(err)
+            setError(err)
+            setLoading(false)
+        }
+    }, [state.units])
 
-  return loading ? (
-    <Loader />
-  ) : error ? (
-    <div className="error-msg lighter">{error?.message}!</div>
-  ) : weather ? (
-    <>
-      <div className="main">
-        <div className="main-temp">
-          <div className="current-temp">
-            {Math.round(weather?.current.temp)}
-            <span>&#176;</span>
-          </div>
-          <div className="low-high-wrapper">
-            <div className="high-temp">
-              <span>H</span>
-              <span>:</span>
-              <span>
-                {Math.round(weather?.daily[0].temp.max)}
-                {degrees}
-              </span>
+    return loading ? (
+        <Loader />
+    ) : error ? (
+        <div className="error-msg lighter">{error?.message}!</div>
+    ) : weather ? (
+        <>
+            <div className="main">
+                <div className="main-temp">
+                    <div className="current-temp">
+                        {weather?.properties.periods[0].temperature}
+                        <span>&#176;</span>
+                        {weather?.properties.periods[0].temperatureUnit}
+                    </div>
+
+                    <div className="current-desc">
+                        {weather?.properties.periods[0].detailedForecast}
+                    </div>
+                    <div className="current-date-time">
+                        {weather?.properties.periods[0].name}
+                    </div>
+                </div>
+                <div className="forecast">
+                    <div className="forecast-details">
+                        {forecastHelper(weather)}
+                    </div>
+                </div>
             </div>
-            <div className="low-temp">
-              <span>L</span>
-              <span>:</span>
-              <span>
-                {Math.round(weather?.daily[0].temp.min)}
-                {degrees}
-              </span>
-            </div>
-          </div>
-          <div className="current-desc">
-            {weather?.current.weather[0].description}
-          </div>
-          <div className="current-date-time">{handleTime(weather)}</div>
-        </div>
-        <div className="forecast">
-          <div className="forecast-details">{forecastHelper(weather)}</div>
-        </div>
-      </div>
-      <div className="details">
-        <div className="detail">
-          <div className="detail-header">Sunrise</div>
-          <div className="detail-content">{handleSun(weather).sunrise}</div>
-        </div>
-        <div className="detail">
-          <div className="detail-header">Sunset</div>
-          <div className="detail-content">{handleSun(weather).sunset}</div>
-        </div>
-        <div className="detail">
-          <div className="detail-header">Visibility</div>
-          <div className="detail-content">
-            {handleVisibility(weather?.current.visibility, units)}
-          </div>
-        </div>
-        <div className="detail">
-          <div className="detail-header">Humidity</div>
-          <div className="detail-content">{weather?.current.humidity}%</div>
-        </div>
-        <div className="detail">
-          <div className="detail-header">Wind</div>
-          <div className="detail-content">
-            {handleWindSpeed(weather?.current.wind_speed, units)}
-          </div>
-        </div>
-        <div className="detail">
-          <div className="detail-header">Feels like</div>
-          <div className="detail-content">
-            {Math.round(weather?.current.feels_like)}
-            {degrees}
-          </div>
-        </div>
-        <div className="detail">
-          <div className="detail-header">UV Index</div>
-          <div className="detail-content">{handleUV(weather?.current.uvi)}</div>
-        </div>
-        <div className="detail">
-          <div className="detail-header">Pressure</div>
-          <div className="detail-content">{weather?.current.pressure} hPa</div>
-        </div>
-      </div>
-    </>
-  ) : (
-    <></>
-  );
-};
+        </>
+    ) : (
+        <></>
+    )
+}
 
-export default Home;
+export default Home
