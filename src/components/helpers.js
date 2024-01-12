@@ -3,9 +3,6 @@ export const forecastHelper = (weather) => {
     daily = daily.splice(1, 6)
 
     return daily?.map((day, index) => {
-        const unixtime = day.dt - weather.timezone_offset
-        const date = new Date(unixtime * 1000)
-
         return (
             <div className="details">
                 <div className="high-low">

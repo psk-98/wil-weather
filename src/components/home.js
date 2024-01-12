@@ -10,19 +10,37 @@ const Home = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    useEffect(async () => {
-        try {
-            const res = await axios.get(
-                `https://api.weather.gov/gridpoints/MTR/84,105/forecast?units=${state.units}`
-            )
-            const { data } = res
-            setWeather(data)
-            setLoading(false)
-        } catch (err) {
-            console.log(err)
-            setError(err)
-            setLoading(false)
+    // const fetchWeather = async () => {
+    //     try {
+    //         const res = await axios.get(
+    //             `https://api.weather.gov/gridpoints/MTR/84,105/forecast?units=${state.units}`
+    //         )
+    //         const { data } = res
+    //         setWeather(data)
+    //         setLoading(false)
+    //     } catch (err) {
+    //         console.log(err)
+    //         setError(err)
+    //         setLoading(false)
+    //     }
+    // }
+
+    useEffect(() => {
+        const fetchWeather = async () => {
+            try {
+                const res = await axios.get(
+                    `https://api.weather.gov/gridpoints/MTR/84,105/forecast?units=${state.units}`
+                )
+                const { data } = res
+                setWeather(data)
+                setLoading(false)
+            } catch (err) {
+                console.log(err)
+                setError(err)
+                setLoading(false)
+            }
         }
+        fetchWeather()
     }, [state.units])
 
     return loading ? (

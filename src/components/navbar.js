@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeUnits, fetchWeather } from '../actions/weather'
+import { changeUnits } from '../actions/weather'
 import { motion } from 'framer-motion'
 
 const spring = {
